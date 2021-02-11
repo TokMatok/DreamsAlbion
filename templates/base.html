@@ -1,0 +1,323 @@
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% load static %}
+
+
+    <link rel="shortcut icon" href="{% static 'statistic/images/LogoBB.png' %}" type="image/png">
+
+    {% load bootstrap4 %}
+    {% bootstrap_javascript %}
+    {% bootstrap_css %}
+    {% load custom_template_tag %}
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Custom css -->
+    <link href="{% static 'statistic/css/main.css' %}" rel="stylesheet" type="text/css" media="screen"/>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="{% static 'statistic/js/main.js' %}" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <title>{% block title %} {{ page_title }} {% endblock %}</title>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <header>
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+
+            <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2"
+                 id="bs-example-navbar-collapse-1 ">
+
+                <a class="navbar-brand d-none d-md-block" href="/">
+                    <img id="nav-logo" src="{% static 'statistic/images/LogoWBC.png' %}" alt="">The Dreams
+                </a>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/top">Топ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/news">Новости</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/payments">Выплаты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/news/faq">FAQ</a>
+                    </li>
+
+                    {% if user.is_staff %}
+                        <li class="nav-item dropdown dropdown-submenu">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                                Активности
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a href="/organisation/" class="dropdown-item">Активности</a>
+
+                            </div>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <div class="md-auto order-0">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a class="navbar-brand d-md-none" href="/">The Dreams</a>
+            </div>
+
+            <div class="navbar-collapse collapse w-100 order-2 dual-collapse2 admin-panel">
+
+                {% if user.is_active and user.is_staff %}
+                    <ul class="nav navbar-nav ml-auto">
+
+                        {% if user|is_group:"admin" %}
+                            <li class="nav-item dropdown dropdown-submenu">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    Админка
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                    <a href="/fucking_admins/" class="dropdown-item">Админ панель</a>
+
+                                    <a href="/fucking_admins/changelog/changelog/" class="dropdown-item">Список
+                                        изменений</a>
+
+                                    <a href="/fucking_admins/SRM/order/" class="dropdown-item">Задачи</a>
+
+
+                                    <div class="dropdown-divider"></div>
+
+                                    <a href="/fucking_admins/statistic/customuser/"
+                                       class="dropdown-item">Пользователи</a>
+
+
+                                    <div class="dropdown-divider"></div>
+
+                                    <a href="/fucking_admins/Payments/" class="dropdown-item">Казначейство</a>
+
+                                    <a href="/fucking_admins/statistic/useractivity/"
+                                       class="dropdown-item">Активности</a>
+
+
+                                    <div class="dropdown-divider"></div>
+                                    <a href="/fucking_admins/Articles/new/" class="dropdown-item">Новости</a>
+                                    <a href="/fucking_admins/Articles/faq/" class="dropdown-item">FAQ</a>
+
+
+                                    <div class="dropdown-divider"></div>
+                                    <a href="/fucking_admins/statistic/recruit/" class="dropdown-item">Рекруты</a>
+
+                                </div>
+                            </li>
+                        {% endif %}
+
+                        {% if user|is_group:'Редактор' or user|is_group:"admin" %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    Статьи
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a href="/fucking_admins/Articles/new/" class="dropdown-item">Новости</a>
+                                    <a href="/fucking_admins/Articles/faq/" class="dropdown-item">FAQ</a>
+                                </div>
+                            </li>
+                        {% endif %}
+
+                        {% if user|is_group:'Казначей' or user|is_group:"admin" %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false"> Казначейство </a>
+
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a href="/payments/add_payment/" class="dropdown-item">Добавить выплату</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="/fucking_admins/Payments/payment/" class="dropdown-item">Выплаты</a>
+                                    <a href="/fucking_admins/Payments/treasurer/" class="dropdown-item">Казначеи</a>
+                                </div>
+                            </li>
+                        {% endif %}
+
+                        {% if user|is_group:'Рекрутёр' or user|is_group:"admin" %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">Рекруты</a>
+
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a href="/required_add" class="dropdown-item">Новый рекрут</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="/fucking_admins/statistic/recruit/" class="dropdown-item">Рекруты</a>
+
+                                    {#                                {% if user|is_group:"Глава рекрутёров" %}#}
+                                    {#                                    <a href="/required_admin" class="dropdown-item">Админка</a>#}
+                                    {#                                {% endif %}#}
+
+                                </div>
+                            </li>
+                        {% endif %}
+
+                        {% if user.is_staff %}
+                            <li class="nav-item dropdown dropdown-submenu">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    Задачи
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a href="/ordering/" class="dropdown-item">Мои задачи</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="/fucking_admins/SRM/order/" class="dropdown-item">Задачи</a>
+
+                                </div>
+                            </li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+
+            </div>
+
+
+            <div class="navbar-collapse collapse w-50 order-3 dual-collapse2">
+                <ul class="nav navbar-nav ml-auto ">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="dropdown-toggle nav-link" id="LoginDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {% if user.is_authenticated %}
+                                {{ user.username }}
+                            {% else %}
+                                Профиль
+                            {% endif %}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="LoginDropdown">
+                            {% if user.is_authenticated %}
+                                <a href="#" data-toggle="modal" data-target="#UserAccount"
+                                   class="dropdown-item">Аккаунт</a>
+                            {% else %}
+                                <a href="/login" class="dropdown-item">Войти</a>
+                                <a href="/register" class="dropdown-item">Регистрация</a>
+                            {% endif %}
+                            {% if user.is_authenticated %}
+                                <div class="divider"></div>
+                                <a href="/logout" class="dropdown-item">Выйти</a>
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div id="UserAccount" class="modal fade bd-example-modal-lg" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text">Профиль</h4>
+                    <button class="btn"><a href="/change_user" class="editing-gear-profile">&#9881;</a></button>
+                    <button class="close" data-dismiss="modal">x</button>
+                </div>
+                {% if user.is_authenticated %}
+
+                    <div class="modal-body"> Логин : {{ user.username }} </div>
+                    <div class="modal-body"> Имя : {{ user.first_name }} </div>
+                    <div class="modal-body"> Почта : {{ user.email }} </div>
+                    <div class="modal-body"> Последний вход : {{ user.last_login }} </div>
+                    <div class="modal-body"> Часовой пояс : {{ user.timezone }} </div>
+                    <div class="modal-body"> Долг передо мной: {{ user| outstanding_payments | triad_format }} </div>
+                    <table class="table table-dark table-striped table-hover table-sm ">
+                        <thead>
+                        <tr style="color: #00B0E8">
+                            <th scope="col">Роли</th>
+                            <th scope="col">Активности</th>
+                            <th scope="col">Прайм-тайм</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for i in user|max_user_columns %}
+                            <tr class="top-1">
+                                <td colspan="0">{{ user.user_role.all|index:i }}</td>
+                                <td colspan="1">{{ user.user_activity.all|index:i }}</td>
+                                <td colspan="2">{{ user.user_prime_time.all|index:i }}</td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                {% endif %}
+
+                <div class="modal-footer">
+                    <button class="btn btn-danger" id="loggout"><a href="/logout">Выйти</a></button>
+
+                    <button class="btn btn-danger" id="exit" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</div>
+
+
+<footer class="page-footer unique-color-dark container-fluid ">
+    <div class="footer-copyright text-center py-0">&copy; 2020 Copyright:
+        <a href="https://TheDreamsAlbion.ru">TheDreamsAlbion.ru</a>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

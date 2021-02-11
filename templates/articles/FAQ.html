@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row text">
+            <div class="col">
+                <div id="accordion">
+
+                    {% if FAQ %}
+                        {% for faq in FAQ %}
+
+                            <div class="card text-white">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-faq text" data-toggle="collapse"
+                                                data-target="#collapse{{ faq.id }}"
+                                                aria-expanded="true" aria-controls="collapse{{ faq.id }}">
+                                            {{ faq.title }}
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapse{{ faq.id }}" class="collapse" aria-labelledby="heading{{ faq.id }}"
+                                     data-parent="#accordion">
+                                    <div class="card-body">{{ faq.text| safe }}</div>
+                                </div>
+                            </div>
+
+                        {% endfor %}
+                    {% else %}
+                        <h3 class="text-center">Пока записей нет</h3>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

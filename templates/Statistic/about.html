@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load custom_template_tag %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="row text-center">
+
+            <div class="col text">
+
+                <div class="col">
+                    <h2>Наша гильдия: {{ about.name }}</h2>
+                </div>
+
+                <div class="col">
+                    <h4>Наш альянс: {{ about.alliance }}</h4>
+                </div>
+
+                <div class="col">
+                    Наш kill fame: {{ about.kill_fame|triad_format }}
+                </div>
+
+                <div class="col">
+                    Количество участников: {{ about.member_count|triad_format }}
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col">
+
+                <div class="col">
+                    <h4 class="text"> Связь с нами</h4>
+                </div>
+
+                <div class="col">
+                    <iframe id="discord-iframe" src="https://discordapp.com/widget?id=734429602809905274&theme=dark"
+                            height="500"
+                            allowtransparency="true" frameborder="0"
+                            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+
+                    </iframe>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

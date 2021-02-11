@@ -1,0 +1,35 @@
+
+html::-webkit-scrollbar {
+    width: 0;
+}
+
+.container, .row.justify-content-center.align-items-center {
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: #101010 !important;
+}
+
+
+a {
+    color: #ffffff;
+}
+
+
+.activation-text {
+    font-size: 22px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+
+.activation-code {
+    background-color: #2d2d2d;
+    border: 3px #2d2d2d;
+    border-radius: 30px;
+    font-size: 26px;
+    padding-left: 10px;
+    padding-right: 10px;
+}

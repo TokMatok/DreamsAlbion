@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_template_tag %}
+
+{% block content %}
+
+
+    <link href="{% static 'statistic/css/SRM.css' %}" rel="stylesheet" type="text/css" media="screen"/>
+    <div class="container">
+        <div class="row text">
+            {% if order %}
+                <div class="col">
+                    <div class="widget" style="min-height: 300px;">
+                        <div class="w-head">
+                            <h5>{{ order.topic }}
+                                {% if not order.executed %}
+                                    <span class="label label-red">Open</span>
+                                {% else %}
+                                    <span class="label label-green">Complete</span>
+                                {% endif %}
+                            </h5>
+                            <span class="details">Дедлайн: {{ order.deathline }}</span>
+                            <div class="separator-top">
+                                <hr>
+                            </div>
+                        </div>
+
+                        <div class="w-body">
+
+                            <div class="ticket-large">
+                                <span class="details">{{ order.task_text | safe }}</span>
+                            </div>
+
+                        </div>
+
+                        <div class="w-footer">
+                            <div class="separator">
+                                <hr>
+                            </div>
+                            <small>Дата создания: {{ order.post_date }}</small>
+                            <br>
+                            {% if order.task_to_group.values_list|length %}
+                                {% ifequal order.task_to_group.values_list|length 1 %}
+                                    <small>Задача для группы :
+                                        {{ order.task_to_group.values_list | first | last }}
+                                    </small>
+                                {% else %}
+                                    <small>Задача для групп :
+                                        {% for group in order.task_to_group.values_list %}
+                                            {{ group | last }} {% endfor %}
+                                    </small>
+                                {% endifequal %}
+                            {% else %}
+                                <small>Задача для : {{ user.username }}</small>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <h3>Задача не найдена</h3>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
+

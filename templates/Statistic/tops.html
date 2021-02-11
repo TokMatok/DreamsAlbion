@@ -1,0 +1,603 @@
+{% extends 'base.html' %}
+
+{% load custom_template_tag %}
+
+{% block content %}
+
+    <div class="container-fluid">
+{#        <div class="container">#}
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <div class="text text-center top-fame">
+                        Топ общей феймы
+                    </div>
+                    <table class="table table-dark table-striped table-hover table-sm ">
+                        <thead>
+                        <tr style="color: #00B0E8">
+                            <th scope="col">#</th>
+                            <th scope="col">Имя</th>
+                            <th scope="col">Всего славы</th>
+                            <th scope="col">Убийство игроков</th>
+                            <th scope="col">Убийство мобов</th>
+                            <th scope="col">Собирательство</th>
+                            <th scope="col">Крафтинг</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for this_user in top_fame %}
+
+                            {% if forloop.counter == 1 %}
+                                <tr class="top-1">
+                                    <th class="top-1" scope="row">{{ forloop.counter }}</th>
+
+                                    <td class="user"
+                                        title="{{ this_user.username }}<br>
+                                            {{ this_user.all_fame | millennium_format }}<br>
+                                            {{ this_user.pk_fame| millennium_format }}<br>
+                                            {{ this_user.mob_fame| millennium_format }}<br>
+                                            {{ this_user.gathering_fame| millennium_format }}<br>
+                                            {{ this_user.craft_fame| millennium_format }}<br>">
+                                        <a target="_blank" href="/account/{{ this_user.username }}" class="ronnia-condensed">
+                                        {{ this_user.username }}
+                                    </a>
+                                    </td>
+
+                                    <td>{{ this_user.all_fame | millennium_format }}</td>
+                                    <td>{{ this_user.pk_fame| millennium_format }}</td>
+                                    <td>{{ this_user.mob_fame| millennium_format }}</td>
+                                    <td>{{ this_user.gathering_fame| millennium_format }}</td>
+                                    <td>{{ this_user.craft_fame| millennium_format }}</td>
+                                </tr>
+                            {% elif forloop.counter == 2 %}
+
+                                <tr class="top-2">
+                                    <th class="top-2" scope="row">{{ forloop.counter }}</th>
+                                    <td class="user"
+                                        title="{{ this_user.username }}<br>
+                                            {{ this_user.all_fame | millennium_format }}<br>
+                                            {{ this_user.pk_fame| millennium_format }}<br>
+                                            {{ this_user.mob_fame| millennium_format }}<br>
+                                            {{ this_user.gathering_fame| millennium_format }}<br>
+                                            {{ this_user.craft_fame| millennium_format }}<br>">
+                                        <a target="_blank" href="/account/{{ this_user.username }}" class="ronnia-condensed">
+                                        {{ this_user.username }}
+                                    </a>
+                                    </td>
+                                    <td>{{ this_user.all_fame | millennium_format }}</td>
+                                    <td>{{ this_user.pk_fame| millennium_format }}</td>
+                                    <td>{{ this_user.mob_fame| millennium_format }}</td>
+                                    <td>{{ this_user.gathering_fame| millennium_format }}</td>
+                                    <td>{{ this_user.craft_fame| millennium_format }}</td>
+                                </tr>
+
+                            {% elif forloop.counter == 3 %}
+
+                                <tr class="top-3">
+                                    <th class="top-3" scope="row">{{ forloop.counter }}</th>
+
+                                    <td class="user"
+                                        title="{{ this_user.username }}<br>
+                                            {{ this_user.all_fame | millennium_format }}<br>
+                                            {{ this_user.pk_fame| millennium_format }}<br>
+                                            {{ this_user.mob_fame| millennium_format }}<br>
+                                            {{ this_user.gathering_fame| millennium_format }}<br>
+                                            {{ this_user.craft_fame| millennium_format }}<br>">
+                                        <a target="_blank" href="/account/{{ this_user.username }}" class="ronnia-condensed">
+                                        {{ this_user.username }}
+                                    </a>
+                                    </td>
+                                    <td>{{ this_user.all_fame | millennium_format }}</td>
+                                    <td>{{ this_user.pk_fame| millennium_format }}</td>
+                                    <td>{{ this_user.mob_fame| millennium_format }}</td>
+                                    <td>{{ this_user.gathering_fame| millennium_format }}</td>
+                                    <td>{{ this_user.craft_fame| millennium_format }}</td>
+                                </tr>
+
+                            {% else %}
+
+                                <tr class="top-other">
+                                    <th class="top-other" scope="row">{{ forloop.counter }}</th>
+
+                                    <td class="user"
+                                        title="{{ this_user.username }}<br>
+                                            {{ this_user.all_fame | millennium_format }}<br>
+                                            {{ this_user.pk_fame| millennium_format }}<br>
+                                            {{ this_user.mob_fame| millennium_format }}<br>
+                                            {{ this_user.gathering_fame| millennium_format }}<br>
+                                            {{ this_user.craft_fame| millennium_format }}<br>">
+                                        <a target="_blank" href="/account/{{ this_user.username }}" class="ronnia-condensed">
+                                        {{ this_user.username }}
+                                    </a>
+                                    </td>
+
+                                    <td>{{ this_user.all_fame | millennium_format }}</td>
+                                    <td>{{ this_user.pk_fame| millennium_format }}</td>
+                                    <td>{{ this_user.mob_fame| millennium_format }}</td>
+                                    <td>{{ this_user.gathering_fame| millennium_format }}</td>
+                                    <td>{{ this_user.craft_fame| millennium_format }}</td>
+
+                                </tr>
+
+                            {% endif %}
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+{#        </div>#}
+
+        <div class="row">
+            <div class="col">
+                <div class="text text-center top-fame">
+                    Топ убийства игроков
+                </div>
+                <table class="table table-dark table-striped table-hover  table-sm ">
+                    <thead>
+                    <tr style="color: #00B0E8">
+                        <th scope="col">#</th>
+                        <th scope="col">Имя</th>
+                        <th scope="col">Убийство игроков</th>
+                        <th scope="col">Всего славы</th>
+                        <th scope="col">Убийство мобов</th>
+                        <th scope="col">Собирательство</th>
+                        <th scope="col">Крафтинг</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for this_user in pk_fame %}
+                        {% if forloop.counter == 1 %}
+
+                            <tr class="top-1">
+                                <th class="top-1" scope="row">{{ forloop.counter }}</th>
+                                <td class="user"
+                                    title="{{ this_user.username }}<br>
+                                    {{ this_user.all_fame | millennium_format }}<br>
+                                    {{ this_user.pk_fame| millennium_format }}<br>
+                                    {{ this_user.mob_fame| millennium_format }}<br>
+                                    {{ this_user.gathering_fame| millennium_format }}<br>
+                                    {{ this_user.craft_fame| millennium_format }}<br>">
+                                    <a target="_blank" href="/account/{{ this_user.username }}" class="ronnia-condensed">
+                                        {{ this_user.username }}
+                                    </a>
+                                </td>
+
+                                <td>{{ this_user.pk_fame| millennium_format }}</td>
+                                <td>{{ this_user.all_fame | millennium_format }}</td>
+                                <td>{{ this_user.mob_fame| millennium_format }}</td>
+                                <td>{{ this_user.gathering_fame| millennium_format }}</td>
+                                <td>{{ this_user.craft_fame| millennium_format }}</td>
+                            </tr>
+                        {% elif forloop.counter == 2 %}
+
+                            <tr class="top-2">
+                                <th class="top-2" scope="row">{{ forloop.counter }}</th>
+                                <td class="user"
+                                    title="{{ this_user.username }}<br>
+                                    {{ this_user.all_fame | millennium_format }}<br>
+                                    {{ this_user.pk_fame| millennium_format }}<br>
+                                    {{ this_user.mob_fame| millennium_format }}<br>
+                                    {{ this_user.gathering_fame| millennium_format }}<br>
+                                    {{ this_user.craft_fame| millennium_format }}<br>">
+                                    <a target="_blank" href="/account/{{ this_user.username }}" class="ronnia-condensed">
+                                        {{ this_user.username }}
+                                    </a>
+                                </td>
+
+                                <td>{{ this_user.pk_fame| millennium_format }}</td>
+                                <td>{{ this_user.all_fame | millennium_format }}</td>
+                                <td>{{ this_user.mob_fame| millennium_format }}</td>
+                                <td>{{ this_user.gathering_fame| millennium_format }}</td>
+                                <td>{{ this_user.craft_fame| millennium_format }}</td>
+                            </tr>
+
+                        {% elif forloop.counter == 3 %}
+
+                            <tr class="top-3">
+                                <th class="top-3" scope="row">{{ forloop.counter }}</th>
+                                <td class="user"
+                                    title="{{ this_user.username }}<br>
+                                    {{ this_user.all_fame | millennium_format }}<br>
+                                    {{ this_user.pk_fame| millennium_format }}<br>
+                                    {{ this_user.mob_fame| millennium_format }}<br>
+                                    {{ this_user.gathering_fame| millennium_format }}<br>
+                                    {{ this_user.craft_fame| millennium_format }}<br>">
+                                    <a target="_blank" href="/account/{{ this_user.username }}" class="ronnia-condensed">
+                                        {{ this_user.username }}
+                                    </a>
+                                </td>
+
+                                <td>{{ this_user.pk_fame| millennium_format }}</td>
+                                <td>{{ this_user.all_fame | millennium_format }}</td>
+                                <td>{{ this_user.mob_fame| millennium_format }}</td>
+                                <td>{{ this_user.gathering_fame| millennium_format }}</td>
+                                <td>{{ this_user.craft_fame| millennium_format }}</td>
+                            </tr>
+
+                        {% else %}
+
+                            <tr class="top-other">
+                                <th class="top-other" scope="row">{{ forloop.counter }}</th>
+                                <td class="user"
+                                    title="{{ this_user.username }}<br>
+                                    {{ this_user.all_fame | millennium_format }}<br>
+                                    {{ this_user.pk_fame| millennium_format }}<br>
+                                    {{ this_user.mob_fame| millennium_format }}<br>
+                                    {{ this_user.gathering_fame| millennium_format }}<br>
+                                    {{ this_user.craft_fame| millennium_format }}<br>">
+                                    <a target="_blank" href="/account/{{ this_user.username }}" class="ronnia-condensed">
+                                        {{ this_user.username }}
+                                    </a>
+                                </td>
+
+                                <td>{{ this_user.pk_fame| millennium_format }}</td>
+                                <td>{{ this_user.all_fame | millennium_format }}</td>
+                                <td>{{ this_user.mob_fame| millennium_format }}</td>
+                                <td>{{ this_user.gathering_fame| millennium_format }}</td>
+                                <td>{{ this_user.craft_fame| millennium_format }}</td>
+
+                            </tr>
+
+                        {% endif %}
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col">
+                <div class="text text-center top-fame">
+                    Топ убийства мобов
+                </div>
+                <table class="table table-dark table-striped table-hover  table-sm ">
+                    <thead>
+                    <tr style="color: #00B0E8">
+                        <th scope="col">#</th>
+                        <th scope="col">Имя</th>
+                        <th scope="col">Убийство мобов</th>
+                        <th scope="col">Всего славы</th>
+                        <th scope="col">Убийство игроков</th>
+                        <th scope="col">Собирательство</th>
+                        <th scope="col">Крафтинг</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for this_user in mob_fame %}
+                        {% if forloop.counter == 1 %}
+
+                            <tr class="top-1">
+                                <th class="top-1" scope="row">{{ forloop.counter }}</th>
+                                <td class="user"
+                                    title="{{ this_user.username }}<br>
+                                    {{ this_user.all_fame | millennium_format }}<br>
+                                    {{ this_user.pk_fame| millennium_format }}<br>
+                                    {{ this_user.mob_fame| millennium_format }}<br>
+                                    {{ this_user.gathering_fame| millennium_format }}<br>
+                                    {{ this_user.craft_fame| millennium_format }}<br>">
+                                    <a target="_blank" href="/account/{{ this_user.username }}" class="ronnia-condensed">
+                                        {{ this_user.username }}
+                                    </a>
+                                </td>
+
+                                <td>{{ this_user.mob_fame| millennium_format }}</td>
+                                <td>{{ this_user.all_fame | millennium_format }}</td>
+                                <td>{{ this_user.pk_fame| millennium_format }}</td>
+                                <td>{{ this_user.gathering_fame| millennium_format }}</td>
+                                <td>{{ this_user.craft_fame| millennium_format }}</td>
+                            </tr>
+                        {% elif forloop.counter == 2 %}
+
+                            <tr class="top-2">
+                                <th class="top-2" scope="row">{{ forloop.counter }}</th>
+
+                                <td class="user"
+                                    title="{{ this_user.username }}<br>
+                                    {{ this_user.all_fame | millennium_format }}<br>
+                                    {{ this_user.pk_fame| millennium_format }}<br>
+                                    {{ this_user.mob_fame| millennium_format }}<br>
+                                    {{ this_user.gathering_fame| millennium_format }}<br>
+                                    {{ this_user.craft_fame| millennium_format }}<br>">
+                                    <a target="_blank" href="/account/{{ this_user.username }}" class="ronnia-condensed">
+                                        {{ this_user.username }}
+                                    </a>
+                                </td>
+
+                                <td>{{ this_user.mob_fame| millennium_format }}</td>
+                                <td>{{ this_user.all_fame | millennium_format }}</td>
+                                <td>{{ this_user.pk_fame| millennium_format }}</td>
+                                <td>{{ this_user.gathering_fame| millennium_format }}</td>
+                                <td>{{ this_user.craft_fame| millennium_format }}</td>
+                            </tr>
+
+                        {% elif forloop.counter == 3 %}
+
+                            <tr class="top-3">
+                                <th class="top-3" scope="row">{{ forloop.counter }}</th>
+                                <td class="user"
+                                    title="{{ this_user.username }}<br>
+                                    {{ this_user.all_fame | millennium_format }}<br>
+                                    {{ this_user.pk_fame| millennium_format }}<br>
+                                    {{ this_user.mob_fame| millennium_format }}<br>
+                                    {{ this_user.gathering_fame| millennium_format }}<br>
+                                    {{ this_user.craft_fame| millennium_format }}<br>">
+                                    <a target="_blank" href="/account/{{ this_user.username }}" class="ronnia-condensed">
+                                        {{ this_user.username }}
+                                    </a>
+                                </td>
+
+                                <td>{{ this_user.mob_fame| millennium_format }}</td>
+                                <td>{{ this_user.all_fame | millennium_format }}</td>
+                                <td>{{ this_user.pk_fame| millennium_format }}</td>
+                                <td>{{ this_user.gathering_fame| millennium_format }}</td>
+                                <td>{{ this_user.craft_fame| millennium_format }}</td>
+                            </tr>
+
+                        {% else %}
+
+                            <tr class="top-other">
+                                <th class="top-other" scope="row">{{ forloop.counter }}</th>
+                                <td class="user"
+                                    title="{{ this_user.username }}<br>
+                                    {{ this_user.all_fame | millennium_format }}<br>
+                                    {{ this_user.pk_fame| millennium_format }}<br>
+                                    {{ this_user.mob_fame| millennium_format }}<br>
+                                    {{ this_user.gathering_fame| millennium_format }}<br>
+                                    {{ this_user.craft_fame| millennium_format }}<br>">
+                                    <a target="_blank" href="/account/{{ this_user.username }}" class="ronnia-condensed">
+                                        {{ this_user.username }}
+                                    </a>
+                                </td>
+
+                                <td>{{ this_user.mob_fame| millennium_format }}</td>
+                                <td>{{ this_user.all_fame | millennium_format }}</td>
+                                <td>{{ this_user.pk_fame| millennium_format }}</td>
+                                <td>{{ this_user.gathering_fame| millennium_format }}</td>
+                                <td>{{ this_user.craft_fame| millennium_format }}</td>
+                            </tr>
+
+
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="text text-center top-fame">
+                    Топ собирательства
+                </div>
+                <table class="table table-dark table-striped table-hover  table-sm ">
+                    <thead>
+                    <tr style="color: #00B0E8">
+                        <th scope="col">#</th>
+                        <th scope="col">Имя</th>
+                        <th scope="col">Собирательство</th>
+                        <th scope="col">Всего славы</th>
+                        <th scope="col">Убийство игроков</th>
+                        <th scope="col">Убийство мобов</th>
+                        <th scope="col">Крафтинг</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for this_user in gathering_fame %}
+                        {% if forloop.counter == 1 %}
+
+                            <tr class="top-1">
+                                <th class="top-1" scope="row">{{ forloop.counter }}</th>
+                                <td class="user"
+                                    title="{{ this_user.username }}<br>
+                                    {{ this_user.all_fame | millennium_format }}<br>
+                                    {{ this_user.pk_fame| millennium_format }}<br>
+                                    {{ this_user.mob_fame| millennium_format }}<br>
+                                    {{ this_user.gathering_fame| millennium_format }}<br>
+                                    {{ this_user.craft_fame| millennium_format }}<br>">
+                                    <a target="_blank" href="/account/{{ this_user.username }}" class="ronnia-condensed">
+                                        {{ this_user.username }}
+                                    </a>
+                                </td>
+
+                                <td>{{ this_user.gathering_fame| millennium_format }}</td>
+                                <td>{{ this_user.all_fame | millennium_format }}</td>
+                                <td>{{ this_user.pk_fame| millennium_format }}</td>
+                                <td>{{ this_user.mob_fame| millennium_format }}</td>
+                                <td>{{ this_user.craft_fame| millennium_format }}</td>
+                            </tr>
+                        {% elif forloop.counter == 2 %}
+
+                            <tr class="top-2">
+                                <th class="top-2" scope="row">{{ forloop.counter }}</th>
+                                <td class="user"
+                                    title="{{ this_user.username }}<br>
+                                    {{ this_user.all_fame | millennium_format }}<br>
+                                    {{ this_user.pk_fame| millennium_format }}<br>
+                                    {{ this_user.mob_fame| millennium_format }}<br>
+                                    {{ this_user.gathering_fame| millennium_format }}<br>
+                                    {{ this_user.craft_fame| millennium_format }}<br>">
+                                    <a target="_blank" href="/account/{{ this_user.username }}" class="ronnia-condensed">
+                                        {{ this_user.username }}
+                                    </a>
+                                </td>
+
+                                <td>{{ this_user.gathering_fame| millennium_format }}</td>
+                                <td>{{ this_user.all_fame | millennium_format }}</td>
+                                <td>{{ this_user.pk_fame| millennium_format }}</td>
+                                <td>{{ this_user.mob_fame| millennium_format }}</td>
+                                <td>{{ this_user.craft_fame| millennium_format }}</td>
+                            </tr>
+
+                        {% elif forloop.counter == 3 %}
+
+                            <tr class="top-3">
+                                <th class="top-3" scope="row">{{ forloop.counter }}</th>
+                                <td class="user"
+                                    title="{{ this_user.username }}<br>
+                                    {{ this_user.all_fame | millennium_format }}<br>
+                                    {{ this_user.pk_fame| millennium_format }}<br>
+                                    {{ this_user.mob_fame| millennium_format }}<br>
+                                    {{ this_user.gathering_fame| millennium_format }}<br>
+                                    {{ this_user.craft_fame| millennium_format }}<br>">
+                                    <a target="_blank" href="/account/{{ this_user.username }}" class="ronnia-condensed">
+                                        {{ this_user.username }}
+                                    </a>
+                                </td>
+
+                                <td>{{ this_user.gathering_fame| millennium_format }}</td>
+                                <td>{{ this_user.all_fame | millennium_format }}</td>
+                                <td>{{ this_user.pk_fame| millennium_format }}</td>
+                                <td>{{ this_user.mob_fame| millennium_format }}</td>
+                                <td>{{ this_user.craft_fame| millennium_format }}</td>
+                            </tr>
+
+                        {% else %}
+
+                            <tr class="top-other">
+                                <th class="top-other" scope="row">{{ forloop.counter }}</th>
+                                <td class="user"
+                                    title="{{ this_user.username }}<br>
+                                    {{ this_user.all_fame | millennium_format }}<br>
+                                    {{ this_user.pk_fame| millennium_format }}<br>
+                                    {{ this_user.mob_fame| millennium_format }}<br>
+                                    {{ this_user.gathering_fame| millennium_format }}<br>
+                                    {{ this_user.craft_fame| millennium_format }}<br>">
+                                    <a target="_blank" href="/account/{{ this_user.username }}" class="ronnia-condensed">
+                                        {{ this_user.username }}
+                                    </a>
+                                </td>
+
+                                <td>{{ this_user.gathering_fame| millennium_format }}</td>
+                                <td>{{ this_user.all_fame | millennium_format }}</td>
+                                <td>{{ this_user.pk_fame| millennium_format }}</td>
+                                <td>{{ this_user.mob_fame| millennium_format }}</td>
+                                <td>{{ this_user.craft_fame| millennium_format }}</td>
+                            </tr>
+
+
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col">
+                <div class="text text-center top-fame">
+                    Топ крафта
+                </div>
+                <table class="table table-dark table-striped table-hover  table-sm ">
+                    <thead>
+                    <tr style="color: #00B0E8">
+                        <th scope="col">#</th>
+                        <th scope="col">Имя</th>
+                        <th scope="col">Крафтинг</th>
+                        <th scope="col">Всего славы</th>
+                        <th scope="col">Убийство игроков</th>
+                        <th scope="col">Убийство мобов</th>
+                        <th scope="col">Собирательство</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for this_user in craft_fame %}
+                        {% if forloop.counter == 1 %}
+
+                            <tr class="top-1">
+                                <th class="top-1" scope="row">{{ forloop.counter }}</th>
+                                <td class="user"
+                                    title="{{ this_user.username }}<br>
+                                    {{ this_user.all_fame | millennium_format }}<br>
+                                    {{ this_user.pk_fame| millennium_format }}<br>
+                                    {{ this_user.mob_fame| millennium_format }}<br>
+                                    {{ this_user.gathering_fame| millennium_format }}<br>
+                                    {{ this_user.craft_fame| millennium_format }}<br>">
+                                    <a target="_blank" href="/account/{{ this_user.username }}" class="ronnia-condensed">
+                                        {{ this_user.username }}
+                                    </a>
+                                </td>
+
+                                <td>{{ this_user.craft_fame| millennium_format }}</td>
+                                <td>{{ this_user.all_fame | millennium_format }}</td>
+                                <td>{{ this_user.pk_fame| millennium_format }}</td>
+                                <td>{{ this_user.mob_fame| millennium_format }}</td>
+                                <td>{{ this_user.gathering_fame| millennium_format }}</td>
+                            </tr>
+                        {% elif forloop.counter == 2 %}
+
+                            <tr class="top-2">
+                                <th class="top-2" scope="row">{{ forloop.counter }}</th>
+                                <td class="user"
+                                    title="{{ this_user.username }}<br>
+                                    {{ this_user.all_fame | millennium_format }}<br>
+                                    {{ this_user.pk_fame| millennium_format }}<br>
+                                    {{ this_user.mob_fame| millennium_format }}<br>
+                                    {{ this_user.gathering_fame| millennium_format }}<br>
+                                    {{ this_user.craft_fame| millennium_format }}<br>">
+                                    <a target="_blank" href="/account/{{ this_user.username }}" class="ronnia-condensed">
+                                        {{ this_user.username }}
+                                    </a>
+                                </td>
+
+                                <td>{{ this_user.craft_fame| millennium_format }}</td>
+                                <td>{{ this_user.all_fame | millennium_format }}</td>
+                                <td>{{ this_user.pk_fame| millennium_format }}</td>
+                                <td>{{ this_user.mob_fame| millennium_format }}</td>
+                                <td>{{ this_user.gathering_fame| millennium_format }}</td>
+                            </tr>
+
+                        {% elif forloop.counter == 3 %}
+
+                            <tr class="top-3">
+                                <th class="top-3" scope="row">{{ forloop.counter }}</th>
+                                <td class="user"
+                                    title="{{ this_user.username }}<br>
+                                    {{ this_user.all_fame | millennium_format }}<br>
+                                    {{ this_user.pk_fame| millennium_format }}<br>
+                                    {{ this_user.mob_fame| millennium_format }}<br>
+                                    {{ this_user.gathering_fame| millennium_format }}<br>
+                                    {{ this_user.craft_fame| millennium_format }}<br>">
+                                    <a target="_blank" href="/account/{{ this_user.username }}" class="ronnia-condensed">
+                                        {{ this_user.username }}
+                                    </a>
+                                </td>
+
+                                <td>{{ this_user.craft_fame| millennium_format }}</td>
+                                <td>{{ this_user.all_fame | millennium_format }}</td>
+                                <td>{{ this_user.pk_fame| millennium_format }}</td>
+                                <td>{{ this_user.mob_fame| millennium_format }}</td>
+                                <td>{{ this_user.gathering_fame| millennium_format }}</td>
+                            </tr>
+
+                        {% else %}
+
+                            <tr class="top-other">
+                                <th class="top-other" scope="row">{{ forloop.counter }}</th>
+                                <td class="user"
+                                    title="{{ this_user.username }}<br>
+                                    {{ this_user.all_fame | millennium_format }}<br>
+                                    {{ this_user.pk_fame| millennium_format }}<br>
+                                    {{ this_user.mob_fame| millennium_format }}<br>
+                                    {{ this_user.gathering_fame| millennium_format }}<br>
+                                    {{ this_user.craft_fame| millennium_format }}<br>">
+                                    <a target="_blank" href="/account/{{ this_user.username }}" class="ronnia-condensed">
+                                        {{ this_user.username }}
+                                    </a>
+                                </td>
+
+                                <td>{{ this_user.craft_fame| millennium_format }}</td>
+                                <td>{{ this_user.all_fame | millennium_format }}</td>
+                                <td>{{ this_user.pk_fame| millennium_format }}</td>
+                                <td>{{ this_user.mob_fame| millennium_format }}</td>
+                                <td>{{ this_user.gathering_fame| millennium_format }}</td>
+                            </tr>
+
+
+                        {% endif %}
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

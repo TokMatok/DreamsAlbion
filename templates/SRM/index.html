@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_template_tag %}
+
+{% block content %}
+    <link href="{% static 'statistic/css/SRM.css' %}" rel="stylesheet" type="text/css" media="screen"/>
+
+    <div class="container">
+        <div class="row text">
+
+            <div class="col-lg-6 col-md-12">
+                <div class="row">
+
+                    <div class="widget w-md-100" style="min-height: 550px;">
+                        <div class="w-head">
+                            <h4>Мои задачи</h4>
+                            <div class="separator-top">
+                                <hr>
+                            </div>
+                        </div>
+
+                        <div class="w-body" style="max-height: 550px;">
+                            {% if orders_for_me %}
+                                {% for order in orders_for_me %}
+
+                                    <div class="ticket-small">
+                                        <h5><a href="/ordering/order/{{ order.id }}">{{ order.topic }}</a>
+
+                                            {% if not order.executed %}
+                                                <span class="label label-red">Open</span>
+                                            {% else %}
+                                                <span class="label label-green">Complete</span>
+                                            {% endif %}
+                                        </h5>
+                                        <span class="details">Дата создания: {{ order.post_date }}</span>
+                                        <br>
+                                        <span class="details">Дедлайн: {{ order.deathline }}</span>
+                                        <br>
+                                        <span class="details">Задача: {% separate order.task_text 40 %} </span>
+                                        <hr>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <h3>Задач для тебя нет.</h3>
+                            {% endif %}
+
+                        </div>
+
+                        <div class="w-footer">
+                            <div class="separator-bottom">
+                                <hr>
+                            </div>
+                            <small>Задачи для : {{ user.username }}</small>
+                            <br>
+                            <small>Всего задач {{ orders_for_me | length }}</small>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+
+                    <div class="widget" style="min-height: 550px;">
+                        <div class="w-head">
+                            <h4>Последние 5 дня меня</h4>
+                            <div class="separator-top">
+                                <hr>
+                            </div>
+                        </div>
+
+                        <div class="w-body" style="max-height: 550px;">
+                            {% if last_5_for_me %}
+                                {% for order in last_5_for_me %}
+
+                                    <div class="ticket-small">
+                                        <h5><a href="/ordering/order/{{ order.id }}">{{ order.topic }}</a>
+
+                                            {% if not order.executed %}
+                                                <span class="label label-red">Open</span>
+                                            {% else %}
+                                                <span class="label label-green">Complete</span>
+                                            {% endif %}
+                                        </h5>
+                                        <span class="details">Дата создания: {{ order.post_date }}</span>
+                                        <br>
+                                        <span class="details">Дедлайн: {{ order.deathline }}</span>
+                                        <br>
+                                        <span class="details">Задача: {% separate order.task_text 40 %} </span>
+
+                                        <hr>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <h3>Задач для тебя нет.</h3>
+                            {% endif %}
+
+                        </div>
+                        <br>
+                        <div class="w-footer">
+                            <div class="separator-bottom">
+                                <hr>
+                            </div>
+                            <small>Задачи для : {{ user.username }}</small>
+                            <br>
+                            <small>Всего задач {{ last_5_for_me | length }}</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            <div class="col-lg-6 col-md-12">
+                <div class="row">
+
+                    <div class="widget" style="min-height: 550px;">
+                        <div class="w-head">
+                            <h4>Задачи для моих групп</h4>
+                            <div class="separator-top">
+                                <hr>
+                            </div>
+                        </div>
+
+                        <div class="w-body" style="max-height: 550px;">
+                            {% if orders_for_my_group %}
+                                {% for order in orders_for_my_group %}
+
+                                    <div class="ticket-small">
+                                        <h5><a href="/ordering/order/{{ order.id }}">{{ order.topic }}  </a>
+
+                                            {% if not order.executed %}
+                                                <span class="label label-red">Open</span>
+                                            {% else %}
+                                                <span class="label label-green">Complete</span>
+                                            {% endif %}
+                                        </h5>
+                                        <span class="details">Дата создания: {{ order.post_date }}</span>
+                                        <br>
+                                        <span class="details">Дедлайн: {{ order.deathline }}</span>
+                                        <br>
+                                        <span class="details">Задача: {% separate order.task_text 40 %} </span>
+
+                                        <hr>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <h3>Задач для тебя нет.</h3>
+                            {% endif %}
+
+                        </div>
+
+                        <div class="w-footer">
+                            <div class="separator-bottom">
+                                <hr>
+                            </div>
+                            <small>Вы состоите в группах: {% for group in groups_names %}
+                                <strong>{{ group }}</strong>
+                            {% endfor %}
+                            </small>
+                            <br>
+                            <small>Всего задач: {{ orders_for_my_group| length }}</small>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="widget" style="min-height: 550px;">
+                        <div class="w-head">
+                            <h4>Дедлайн близко.</h4>
+                            <div class="separator-top">
+                                <hr>
+                            </div>
+                        </div>
+
+                        <div class="w-body" style="max-height: 550px;">
+                            {% if deathline %}
+                                {% for order in deathline %}
+
+                                    <div class="ticket-small">
+                                        <h5><a href="/ordering/order/{{ order.id }}">{{ order.topic }}  </a>
+
+                                            {% if not order.executed %}
+                                                <span class="label label-red">Open</span>
+                                            {% else %}
+                                                <span class="label label-green">Complete</span>
+                                            {% endif %}
+                                        </h5>
+                                        <span class="details">Дата создания: {{ order.post_date }}</span>
+                                        <br>
+                                        <span class="details">Дедлайн: {{ order.deathline }}</span>
+                                        <br>
+                                        <span class="details">Задача: {% separate order.task_text 40 %} </span>
+
+                                        <hr>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <h3>Задач для тебя нет.</h3>
+                            {% endif %}
+
+                        </div>
+
+                        <div class="w-footer">
+                            <div class="separator-bottom">
+                                <hr>
+                            </div>
+
+                            <small>Задача для групп: {% for group in groups_names %}
+                                <strong>{{ group }}</strong>
+                            {% endfor %}
+                            </small>
+                            <br>
+                            <small>Всего задач: {{ deathline| length }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

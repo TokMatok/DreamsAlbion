@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+    <link href="{% static 'statistic/css/auth.css' %}" rel="stylesheet" type="text/css" media="screen"/>
+
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col">
+                {% if user.is_anonymous %}
+                    <div class="ui-150 ui-form">
+                        <h3 class="text-center text">Авторизация</h3>
+                        <br>
+                        <form method="POST" class="login-form" style="color: #faf0f0">
+                            {% csrf_token %}
+                            {{ form | crispy }}
+                            <button class="btn btn-white" type="submit">Войти</button>
+                            <br>
+                            <br>
+                        </form>
+                        <div class="register-here text-center">
+                            <b class="white-text">Нет аккаунта?</b>
+                            <a href="/register" target="blank"><strong>Регистрация
+                                здесь</strong></a>
+                        </div>
+                    </div>
+                {% else %}
+                    <h3 class="text-center text">Вы уже авторизованы</h3>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

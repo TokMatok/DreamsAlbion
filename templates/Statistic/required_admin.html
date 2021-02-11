@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% load custom_template_tag %}
+
+{% block content %}
+
+
+    <div class="container">
+        <div class="col">
+            <div class="col text text-center">
+                {% for week in weeks %}
+                    {% weeks_filter weeks week%}
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+<header>
+
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+
+            <div class="navbar-collapse w-100 order-1 order-md-0 dual-collapse2 collapse show"
+                 id="bs-example-navbar-collapse-1 " style="">
+
+                <a class="navbar-brand" href="/">
+                    <img id="nav-logo" src="/static/statistic/images/LogoWBC.png" alt="">The Dreams
+                </a>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/top">Топы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/articles">Новости</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/payments">Выплаты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="md-auto order-0">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2" aria-expanded="true">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <div class="navbar-collapse w-50 order-2 dual-collapse2 collapse show" style="">
+                <ul class="nav navbar-nav ml-auto">
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Статьти
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a href="/fucking_admins/statistic/article/" class="dropdown-item">Статьи</a>
+                            </div>
+                        </li>
+
+
+
+                        <li class="nav-item dropdown dropdown-submenu">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Админка
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a href="/fucking_admins/" class="dropdown-item">Админ панель</a>
+                                <a href="/fucking_admins/statistic/customuser/" class="dropdown-item">Пользователи</a>
+                                <a href="/fucking_admins/changelog/changelog/" class="dropdown-item">Список
+                                    изменений</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="/fucking_admins/statistic/payment/" class="dropdown-item">Выплаты</a>
+                                <a href="/fucking_admins/statistic/useractivity/" class="dropdown-item">Активности</a>
+                                <a href="/fucking_admins/statistic/article/" class="dropdown-item">Статьи</a>
+                                <a href="/fucking_admins/statistic/recruit/" class="dropdown-item">Рекруты</a>
+
+                            </div>
+                        </li>
+
+
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Выплаты </a>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+
+                                <a href="/fucking_admins/statistic/payment/" class="dropdown-item">Выплаты</a>
+
+                            </div>
+                        </li>
+
+
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Рекруты</a>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a href="/fucking_admins/statistic/recruit/" class="dropdown-item">Рекруты</a>
+                                <a href="/required_add" class="dropdown-item">Новый рекрут</a>
+
+
+
+
+                            </div>
+                        </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="navbar-collapse w-100 order-3 dual-collapse2 collapse show" style="">
+                <ul class="nav navbar-nav ml-auto ">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="dropdown-toggle nav-link" id="LoginDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Аккаунт
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="LoginDropdown">
+
+                                <a href="#" data-toggle="modal" data-target="#UserAccount" class="dropdown-item">Аккаунт</a>
+
+
+                                <div class="divider"></div>
+                                <a href="/logout" class="dropdown-item">Выйти</a>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>

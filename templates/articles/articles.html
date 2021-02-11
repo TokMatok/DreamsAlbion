@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_template_tag %}
+
+
+{% block content %}
+    <link href="{% static 'statistic/css/SRM.css' %}" rel="stylesheet" type="text/css" media="screen"/>
+
+    <div class="container">
+        <div class="row row-margin-bottom text text-center">
+            <div class="col">
+                {% if articles %}
+                    {% for article in articles %}
+                        {% if article.is_visible %}
+
+                            <div class="col-12">
+                                <div class="widget" style="min-height: 550px;">
+                                    <div class="w-head text text-center">
+                                        <h4>{{ article.title }}</h4>
+                                        <div class="separator-top">
+                                            <hr>
+                                        </div>
+                                    </div>
+
+                                    <div class="w-body">
+                                        <span class="details">{{ article.text | search_user_call | safe }}</span>
+                                    </div>
+                                    <div class="w-footer text text-center">
+
+                                        <div class="separator-bottom">
+                                            <hr>
+                                        </div>
+                                        {{ article.footer | search_user_call | safe }}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <h2>Пока новостей нет</h2>
+                {% endif %}
+
+            </div>
+        </div>
+
+
+    </div>
+    {#    <div class="container">#}
+    {#        <div class="row">#}
+    {#            <div class="col">#}
+    {#                {% for article in articles %}#}
+    {##}
+    {#                    {% if article.is_visible %}#}
+    {#                        <div class="card-text">#}
+    {#                            <div class="row">#}
+    {##}
+    {#                                <div class="col">#}
+    {##}
+    {#                                    <h2 class="text text-center">{{ article.title }}</h2>#}
+    {#                                    <br>#}
+    {#                                    <span#}
+    {#                                            style="color: coral">{{ article.text | safe }}</span>#}
+    {#                                    <br>#}
+    {#                                </div>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                        <hr>#}
+    {##}
+    {#                    {% endif %}#}
+    {##}
+    {##}
+    {#                {% endfor %}#}
+    {##}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+
+
+{% endblock %}

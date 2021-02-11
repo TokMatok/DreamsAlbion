@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+    <link href="{% static 'statistic/css/auth.css' %}" rel="stylesheet" type="text/css" media="screen"/>
+
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col">
+                <div class="ui-150 ui-form">
+                    <h5>Введите код подтверждения. Он был отправлен на почту {{ user.email }}</h5>
+                    <form method="POST" class="login-form" style="color: #faf0f0">
+                        {% csrf_token %}
+                        {{ form | crispy }}
+                        <button class="btn btn-white" type="submit">Подтвердить</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

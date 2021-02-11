@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_template_tag %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="col">
+            {#            <img class="card-img-top logo-img" src="{% static 'statistic/images/Logo.jpg' %}" alt="Card image cap">#}
+            <div class="card-title" style="color: #ed9107;text-align: center;">
+                <strong style="font-size: 21px"> Выплаты </strong>
+            </div>
+            <table class="table table-dark table-striped table-hover">
+                <thead>
+                <tr style="color: #00B0E8">
+                    <th scope="col">От</th>
+                    <th scope="col">Кому</th>
+                    <th scope="col">Время</th>
+                    <th scope="col">Сумма</th>
+                    <th scope="col">Комментарий</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for payment in payments %}
+                    <tr style="color: #ffd700">
+                        <td><a target="_blank" href="/account/{{ payment.payer }}"
+                               class="ronnia-condensed user"
+                               title="{{ payment.payer }}<br>
+                                                            {{ payment.payer.all_fame | millennium_format }}<br>
+                                                            {{ payment.payer.pk_fame| millennium_format }}<br>
+                                                            {{ payment.payer.mob_fame| millennium_format }}<br>
+                                                            {{ payment.payer.gathering_fame| millennium_format }}<br>
+                                                            {{ payment.payer.craft_fame| millennium_format }}<br>">
+                            {{ payment.payer }}
+                        </a>
+                        </td>
+                        <td>{{ payment.payment_amount_all|unordered_list }}</td>
+                        <td>{{ payment.date }}</td>
+                        <td><span class="tirade-delimiter">{{ payment.payment_amount|triad_format }}</span></td>
+                        <td>{{ payment.comment }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+
+
+    </div>
+
+
+{% endblock %}
+

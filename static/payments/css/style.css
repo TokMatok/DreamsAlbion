@@ -1,0 +1,138 @@
+hr {
+    color: #ed9107;
+    border: none;
+    background-color: #ed9107;
+    height: 2px;
+}
+
+.label {
+    border-radius: 2px;
+    font-weight: normal;
+    padding: 3px 7px;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.label.label-red {
+    color: #ffffff;
+    background: #ed5441;
+    font-size: 13px;
+}
+
+.label.label-green {
+    color: #000000;
+    background: #51d466;
+    font-size: 13px;
+}
+
+.btn {
+    color: coral;
+    padding: 0;
+}
+
+.btn-outline-info:focus:active:hover {
+    border-radius: 10px;
+    padding: 2px 10px 2px 10px;
+}
+
+.search-label {
+    margin-left: 1rem;
+}
+
+.btn-outline-info:active:hover:focus {
+    color: coral;
+    background-color: #00000000;
+    border: 1px solid white;
+}
+
+.btn-outline-info:hover {
+    color: coral;
+    background-color: #00000000;
+    border: 1px solid white;
+}
+
+.btn-outline-info {
+    border-color: coral;
+    border-radius: 10px;
+    padding: 2px 10px 2px 10px;
+    margin-left: 5px;
+    outline: none;
+
+}
+
+.btn:focus:active:hover {
+    border-radius: 10px;
+    padding: 2px 10px 2px 10px;
+}
+
+#username {
+    border-radius: 15px;
+}
+
+.uname {
+    color: #ffd700;
+}
+
+.user-link {
+    background-color: #212529;
+    margin-left: 1rem;
+}
+
+
+.user-completed-payment-sum {
+    background-color: #282828;
+    margin-right: 1rem;
+}
+
+#username {
+    background: #2d2d2d;
+    border: 1px solid coral;
+    border-top: 0;
+    border-left: 0;
+    box-sizing: border-box;
+    color: coral;
+    padding-left: 8px;
+    outline: none;
+}
+
+#username:focus:active:hover {
+    outline: none;
+}
+
+input#id_date {
+    background-color: #2d2d2d;
+    border: 1px solid coral;
+    border-radius: 10px;
+    outline: none;
+    color: coral;
+    padding-left: 10px;
+}
+
+input#id_payment_amount {
+    background-color: #2d2d2d;
+    border: 1px solid coral;
+    border-radius: 10px;
+    outline: none;
+    color: coral;
+    padding-left: 10px;
+}
+
+input#id_comment {
+    background-color: #2d2d2d;
+    border: 1px solid coral;
+    border-radius: 10px;
+    outline: none;
+    color: coral;
+    padding-left: 10px;
+}
+
+
+.change-state{
+    border: 1px white solid;
+}
+
+.change-state:hover{
+    /*background-color: #00000000;*/
+    border: 1px white solid;
+    border-radius: 10px;
+}

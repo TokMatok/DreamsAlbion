@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_template_tag %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-12">
+                <div class="about text-center">
+                    <h2 class="centro-sans">
+                        {{ guild_about.description | safe }}
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {# discord #}
+            <div class="col-md-12 col-lg-4 order-lg-3 order-xl-3 order-md-3 order-sm-2 order-2">
+                <iframe id="discord-iframe" src="https://discordapp.com/widget?id=734429602809905274&theme=dark"
+                        height="350"
+                        allowtransparency="false"
+                        frameborder="0"
+                        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+
+                </iframe>
+            </div>
+            {# about #}
+            <div class="col text text-center order-lg-2 order-xl-2 order-md-1 order-sm-1 order-xs-1">
+
+                {% if about.alliance %}
+                    <div class="col">
+                        <h4>Наш альянс : {{ about.alliance }}</h4>
+                    </div>
+                {% endif %}
+
+                <p> Наш kill fame : {{ about.kill_fame|triad_format }}</p>
+                <p> Количество участников : {{ about.member_count|triad_format }}</p>
+                <img src="{% static 'statistic/images/LogoWW.png' %}" alt="" class="index-logo">
+
+            </div>
+            {# table #}
+            <div class="col-md-12 col-lg-4 col-xs-12 order-lg-1 order-xl-1 order-md-2 order-sm-1 order-xs-1 text">
+                {% if user.is_active %}
+                    {% for group in groups %}
+
+                        <table class="table table-dark table-striped table-hover table-sm text-center ">
+                            <thead>
+                            <tr style="color: #00B0E8">
+                                <th scope="col">
+                                    <a target="_blank" href="/groups/{{ group }}" style="color: #00B0E8">{{ group }}</a>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for this_user in groups|dict_key:group %}
+                                <tr>
+                                    <td>
+                                        <a target="_blank" href="/account/{{ this_user.username }}"
+                                           class="ronnia-condensed user"
+                                           title="{{ this_user.username }}<br>
+                                                            {{ this_user.all_fame | millennium_format }}<br>
+                                                            {{ this_user.pk_fame| millennium_format }}<br>
+                                                            {{ this_user.mob_fame| millennium_format }}<br>
+                                                            {{ this_user.gathering_fame| millennium_format }}<br>
+                                                            {{ this_user.craft_fame| millennium_format }}<br>">
+                                            {{ this_user.username }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endfor %}
+
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+
